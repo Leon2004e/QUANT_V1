@@ -1,0 +1,98 @@
+{
+    "database": "QUANT_SYSTEM.db",
+    "schema_version": "1.0.0",
+    "created_or_verified_at": "2026-06-15T07:57:07.459117+00:00",
+    "db_path": "/Users/leoneverts/Desktop/Quant2-main/CONTROL_PLANE/Database/QUANT_SYSTEM.db",
+    "tables": [
+        "accounts",
+        "audit_logs",
+        "deployments",
+        "governance_rules",
+        "portfolio_members",
+        "portfolios",
+        "risk_limits",
+        "schema_migrations",
+        "strategies",
+        "system_events"
+    ],
+    "table_counts": {
+        "accounts": 0,
+        "audit_logs": 2,
+        "deployments": 0,
+        "governance_rules": 0,
+        "portfolio_members": 0,
+        "portfolios": 0,
+        "risk_limits": 0,
+        "schema_migrations": 1,
+        "strategies": 0,
+        "system_events": 2
+    },
+    "code_registry": {
+        "script_id": "create_quant_system_db",
+        "script_name": "QUANT_SYSTEM DB Creator",
+        "owner": "Leon Everts",
+        "status": "active",
+        "layer": "Control_Plane",
+        "domain": "System",
+        "asset_type": "Database Builder",
+        "purpose": "Creates QUANT_SYSTEM.db inside CONTROL_PLANE/Database",
+        "inputs": [
+            "CONTROL_PLANE folder"
+        ],
+        "outputs": [
+            "CONTROL_PLANE/Database/QUANT_SYSTEM.db",
+            "CONTROL_PLANE/Database/quant_system_db_metadata.json"
+        ],
+        "upstream_data": [
+            "Quant_System_DB_Design.md"
+        ],
+        "downstream_data": [
+            "Backend Centers",
+            "Feedback Loop",
+            "Frontend Dashboards"
+        ],
+        "dependencies": [
+            "pathlib",
+            "sqlite3",
+            "json",
+            "datetime"
+        ],
+        "schedule": "manual",
+        "version": "v1.0.0",
+        "last_reviewed": "2026-06-13",
+        "business_criticality": "critical",
+        "environment": "desktop/server",
+        "registry_group": "control_plane",
+        "author": "Leon Everts",
+        "reviewer": "ChatGPT",
+        "created_date": "2026-06-13",
+        "tags": [
+            "control-plane",
+            "database",
+            "quant-system"
+        ],
+        "notes": [
+            "Creates only the Control Plane database.",
+            "Does not create Backend, Frontend, Management or Infrastructure folders.",
+            "Does not import trading data."
+        ]
+    },
+    "principle": {
+        "stores": [
+            "metadata",
+            "status",
+            "configurations",
+            "references",
+            "events",
+            "audit logs"
+        ],
+        "does_not_store": [
+            "tick data",
+            "OHLC data",
+            "large CSV files",
+            "raw backtests",
+            "raw broker exports",
+            "trading history"
+        ]
+    }
+}
