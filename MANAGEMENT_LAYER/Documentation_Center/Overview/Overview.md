@@ -1,177 +1,242 @@
-QUANT OS Arbeitsregel
+# QUANT OS OVERVIEW
 
-QUANT_OS_Overview.md
+Version: 1.0
 
-Definiert die Gesamtarchitektur.
-Definiert die Layer.
-Definiert die Systemphilosophie.
-Definiert die Business Flows.
-Definiert die Feedback Loops.
-Definiert die Beziehungen zwischen den Layern.
+---
 
-Das Overview dient ausschließlich als:
+# PURPOSE
 
-Orientierung
-Gesamtkontext
-Systemlandkarte
+Dieses Dokument definiert:
+
+- die Gesamtarchitektur von QUANT OS
+- die Layer des Systems
+- die Beziehungen zwischen den Layern
+- die Dokumentationshierarchie
+- die Build-Reihenfolge
+- die Navigation innerhalb des Systems
+
+Dieses Dokument dient ausschließlich als:
+
+text Orientierung Gesamtkontext Systemlandkarte Navigation 
 
 Nicht als Detail-Spezifikation.
 
-Layer Guides
+---
 
-Jeder Layer besitzt einen eigenen Guide.
+# DOCUMENTATION HIERARCHY
 
-Beispiele:
+QUANT OS besitzt folgende Dokumentationshierarchie:
 
-Frontend_Guide.md
+text Overview ↓ Layer Guides ↓ Standards ↓ Registries ↓ Implementierung 
 
-Backend_Guide.md
+Bedeutung:
 
-Management_Guide.md
+text Overview = Systemlandkarte  Layer Guides = Layer Architektur  Standards = Technische Regeln  Registries = Verwaltung von Systemobjekten  Implementierung = Code, Datenbanken, Dashboards, Pipelines 
 
-Control_Plane_Guide.md
+---
 
-Infrastructure_Guide.md
+# PRIORITY RULE
 
-Feedback_Loop_Guide.md
-Prioritätsregel
-Layer Guide
->
-Overview
+Bei Konflikten gilt:
 
-Falls ein Konflikt entsteht:
+text Standards > Layer Guides > Overview 
 
-Der Layer Guide hat Vorrang.
-Das Overview wird nicht zur Ergänzung fehlender Details verwendet.
-Arbeitsweise
+---
 
-Wenn ein Layer Guide bereitgestellt wird:
+# WORKING RULE
 
-Verwende das Overview nur als Gesamtkontext.
-Arbeite ausschließlich innerhalb des bereitgestellten Layers.
-Nutze nur die Definitionen des Layer Guides.
-Erfinde keine zusätzlichen Komponenten.
-Erweitere keine Layer eigenständig.
-Vermische keine Layer-Details.
-Frage bei fehlenden Informationen nach dem entsprechenden Layer Guide.
-Beispiel
+Das Overview dient nur zur Navigation.
 
-Wenn du schickst:
+Sobald ein Layer identifiziert wurde:
 
-QUANT_OS_Overview.md
+text Overview + passender Layer Guide 
 
-+
+verwenden.
 
-Backend_Guide.md
+Danach:
 
-Dann arbeite ich mit:
+text passende Standards 
 
-Systemkontext:
-QUANT_OS_Overview.md
+verwenden.
 
-Operative Spezifikation:
-Backend_Guide.md
+---
 
-Ich werde dann:
+# STANDARD RESPONSE RULE
 
-keine Frontend-Komponenten hinzufügen
-keine Management-Komponenten ergänzen
-keine Infrastructure-Komponenten erfinden
-keine neuen Center erzeugen
-keine zusätzlichen Workflows definieren
+Nach dem Laden des Overviews:
 
-sondern ausschließlich nach dem Backend Guide arbeiten.
+1. Bestimme den betroffenen Layer.
 
-Standardverhalten für QUANT OS
+2. Falls der Layer nicht eindeutig ist:
 
-Sobald du mir das QUANT OS Overview schickst, gehe ich automatisch davon aus:
+text In welchem Layer möchten wir arbeiten? 
 
-Overview = Systemlandkarte
+fragen.
 
-Layer Guide = Spezifikation
+3. Danach ausschließlich mit:
 
-Fehlt Detailwissen:
-→ nach dem entsprechenden Layer Guide fragen
+text Overview + Layer Guide + relevanten Standards 
 
-Nicht:
-→ Details aus anderen Layern ableiten
-→ Annahmen treffen
-→ Komponenten erfinden
-LAYER RESPONSIBILITIES
+arbeiten.
 
-Frontend Layer
+4. Keine Komponenten erfinden.
+
+5. Keine Layer vermischen.
+
+6. Keine Spezifikationen aus anderen Layern ableiten.
+
+---
+
+# SYSTEM LAYERS
+
+QUANT OS besteht aus:
+
+text Infrastructure Layer Management Layer Control Plane Layer Backend Layer Feedback Loop Layer Frontend Layer 
+
+---
+
+# LAYER RESPONSIBILITIES
+
+## Infrastructure Layer
+
 Verantwortlich für:
-- UI
-- Dashboards
-- Visualisierung
-- Benutzerinteraktion
 
-Backend Layer
-Verantwortlich für:
-- Datenverarbeitung
-- Pipelines
-- Strategie-Processing
-- Berechnungen
-- Analytics
+text Storage Databases APIs Scheduler Logging Monitoring Backup VPS Infrastructure Automation 
 
-Management Layer
-Verantwortlich für:
-- Dokumentation
-- SOPs
-- Layer Guides
-- Registries
-- Governance
-- AI Prompt Management
+---
 
-Control Plane Layer
-Verantwortlich für:
-- Entscheidungen
-- Portfolio-Rotation
-- Kapitalallokation
-- Freigaben
-- Deployment-Steuerung
+## Management Layer
 
-Infrastructure Layer
 Verantwortlich für:
-- Hardware
-- Server
-- Datenbanken
-- Storage
-- Deployment Infrastruktur
 
-Feedback Loop Layer
+text Registries Catalogs Configurations Documentation Versioning Audit 
+
+---
+
+## Control Plane Layer
+
 Verantwortlich für:
-- Monitoring
-- Performance Feedback
-- Edge Tracking
-- Systemverbesserung
-- Lifecycle Feedback
+
+text Systemsteuerung Strategien Portfolios Accounts Deployments Governance Events 
+
+Kern:
+
+text QUANT_SYSTEM.db 
+
+---
+
+## Backend Layer
+
+Verantwortlich für:
+
+text Verarbeitung Berechnungen Analytics Scoring Ranking Lifecycle Portfolio Construction Risk Processing 
+
+---
+
+## Feedback Loop Layer
+
+Verantwortlich für:
+
+text Monitoring Performance Feedback Edge Tracking Lifecycle Feedback Portfolio Feedback Governance Feedback Systemverbesserung 
+
+---
+
+## Frontend Layer
+
+Verantwortlich für:
+
+text UI UX Workspaces Dashboards Visualisierung Benutzerinteraktion 
+
+---
+
+# NAVIGATION GUIDE
+
+Wenn die Aufgabe betrifft:
+
+text UI Dashboard Workspace Widget Panel Visualisierung 
+
+verwende:
+
+text Frontend_Guide.md 
+
+---
+
+Wenn die Aufgabe betrifft:
+
+text Center Engine Rules Events Output Analytics Verarbeitung 
+
+verwende:
+
+text Backend_Guide.md 
+
+---
+
+Wenn die Aufgabe betrifft:
+
+text Registry Catalog Configuration Documentation Versioning Audit 
+
+verwende:
+
+text Management_Guide.md 
+
+---
+
+Wenn die Aufgabe betrifft:
+
+text Strategien Portfolios Accounts Deployments Governance QUANT_SYSTEM.db 
+
+verwende:
+
+text Control_Plane_Guide.md 
+
+---
+
+Wenn die Aufgabe betrifft:
+
+text Storage Database API Logging Monitoring Backup Scheduler VPS Automation 
+
+verwende:
+
+text Infrastructure_Guide.md 
+
+---
+
+Wenn die Aufgabe betrifft:
+
+text Lifecycle Portfolio Rotation Edge Tracking Risk Feedback Governance Feedback Rebalancing 
+
+verwende:
+
+text Feedback_Loop_Guide.md 
+
+---
+
 # BUILD ORDER
 
-QUANT OS wird grundsätzlich von unten nach oben aufgebaut.
+QUANT OS wird von unten nach oben aufgebaut.
 
-Empfohlene Reihenfolge:
+Reihenfolge:
 
-1. Infrastructure Layer
-2. Management Layer
-3. Control Plane Layer
-4. Backend Layer
-5. Feedback Loop Layer
-6. Frontend Layer
+text 1. Infrastructure Layer  2. Management Layer  3. Control Plane Layer  4. Backend Layer  5. Feedback Loop Layer  6. Frontend Layer 
 
 Grundsatz:
 
-Ein Layer sollte erst produktiv entwickelt werden,
-wenn die darunterliegenden Layer vorhanden sind.
+text Ein Layer wird erst produktiv entwickelt, wenn die darunterliegenden Layer existieren. 
 
-Frontend wird nicht zuerst gebaut.
+---
 
-Das Frontend ist die letzte Schicht des Systems
-und visualisiert die Outputs aller anderen Layer.
+# SYSTEM PHILOSOPHY
 
-Infrastructure bildet die technische Grundlage.
-Management verwaltet die Systemobjekte.
-Control Plane verbindet das System.
-Backend erzeugt die Ergebnisse.
-Feedback Loops erzeugen die Selbststeuerung.
-Frontend visualisiert und steuert.
+text Infrastructure liefert die Grundlage.  Management verwaltet die Systemobjekte.  Control Plane koordiniert das System.  Backend erzeugt Ergebnisse.  Feedback Loops erzeugen Selbststeuerung.  Frontend visualisiert und steuert. 
+
+---
+
+# PRINCIPLE
+
+QUANT OS wird niemals direkt über das Overview entwickelt.
+
+Das Overview dient ausschließlich dazu:
+
+text den richtigen Layer zu finden den richtigen Guide zu laden die richtigen Standards zu verwenden 
+
+Die eigentliche Spezifikation befindet sich in den Layer Guides und Standards.
