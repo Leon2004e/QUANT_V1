@@ -44,32 +44,34 @@ from tkinter import filedialog, messagebox, ttk
 # DESIGN TOKENS
 # ============================================================
 
-BG = "#05080D"
-PANEL = "#0B111B"
-CARD = "#111827"
-CARD_2 = "#0E1623"
-CARD_3 = "#0A1019"
-BORDER = "#263449"
-BORDER_SOFT = "#1B2738"
+# Bloomberg / Terminal Style Tokens
+BG = "#020403"
+PANEL = "#050505"
+CARD = "#0A0A0A"
+CARD_2 = "#101010"
+CARD_3 = "#151515"
+BORDER = "#333333"
+BORDER_SOFT = "#1A1A1A"
 
-TEXT = "#F4F7FB"
-MUTED = "#9AA7B8"
-DIM = "#64748B"
+TEXT = "#F2F2F2"
+MUTED = "#9B9B9B"
+DIM = "#6F6F6F"
 
-BLUE = "#3B82F6"
-BLUE_DARK = "#0B4EDB"
-GREEN = "#22C55E"
-YELLOW = "#FACC15"
-RED = "#EF4444"
+ORANGE = "#F5A623"
+BLUE = "#2D7DFF"
+BLUE_DARK = "#111111"
+GREEN = "#00C853"
+YELLOW = "#FFD600"
+RED = "#FF1744"
 PURPLE = "#8B5CF6"
-CYAN = "#22D3EE"
-GRAY = "#64748B"
+CYAN = "#00E5FF"
+GRAY = "#6F6F6F"
 
-FONT_TITLE = ("Helvetica", 22, "bold")
-FONT_H1 = ("Helvetica", 15, "bold")
-FONT_H2 = ("Helvetica", 11, "bold")
-FONT_MAIN = ("Helvetica", 10)
-FONT_SMALL = ("Helvetica", 9)
+FONT_TITLE = ("Helvetica", 20, "bold")
+FONT_H1 = ("Helvetica", 14, "bold")
+FONT_H2 = ("Helvetica", 10, "bold")
+FONT_MAIN = ("Helvetica", 9)
+FONT_SMALL = ("Helvetica", 8)
 FONT_XS = ("Helvetica", 8)
 
 
@@ -149,7 +151,7 @@ class ActionButton(tk.Frame):
         bg: str = CARD_2,
         fg: str = TEXT,
         border: str = BORDER,
-        active_bg: str = "#172338",
+        active_bg: str = "#1A1A1A",
     ):
         super().__init__(
             parent,
@@ -405,7 +407,7 @@ class CodeRegistryWidget(tk.Frame):
 
         style.map(
             "Code.Treeview",
-            background=[("selected", "#16345E")],
+            background=[("selected", "#2A2A2A")],
             foreground=[("selected", TEXT)],
         )
 
@@ -451,7 +453,7 @@ class CodeRegistryWidget(tk.Frame):
 
         tk.Label(
             title_row,
-            text="Code Registry",
+            text="CODE REGISTRY",
             bg=BG,
             fg=TEXT,
             font=FONT_TITLE,
@@ -459,9 +461,9 @@ class CodeRegistryWidget(tk.Frame):
 
         tk.Label(
             title_row,
-            text="/ Management Workspace",
+            text="/ MANAGEMENT WORKSPACE",
             bg=BG,
-            fg=BLUE,
+            fg=ORANGE,
             font=FONT_XS,
         ).pack(side="left", padx=(12, 0), pady=(8, 0))
 
@@ -480,7 +482,7 @@ class CodeRegistryWidget(tk.Frame):
             right,
             textvariable=self.layer_filter_var,
             bg=BG,
-            fg=BLUE,
+            fg=ORANGE,
             font=FONT_XS,
         ).pack(side="left", padx=(0, 14))
 
@@ -571,15 +573,15 @@ class CodeRegistryWidget(tk.Frame):
         self.search_box = tk.Frame(
             self.toolbar,
             bg=CARD_2,
-            highlightbackground=BORDER,
+            highlightbackground=ORANGE,
             highlightthickness=1,
         )
 
         tk.Label(
             self.search_box,
             text="Search",
-            bg=CARD_2,
-            fg=MUTED,
+            bg=ORANGE,
+            fg="#000000",
             font=FONT_XS,
         ).pack(side="left", padx=(12, 8))
 
@@ -600,9 +602,9 @@ class CodeRegistryWidget(tk.Frame):
             "Apply Filter",
             self.refresh,
             width=112,
-            bg=BLUE_DARK,
-            fg=TEXT,
-            border=BLUE,
+            bg=ORANGE,
+            fg="#000000",
+            border=ORANGE,
         )
         self.btn_clear_layer = ActionButton(self.toolbar, "Clear Layer", self.clear_layer_filter, width=100)
         self.btn_refresh = ActionButton(self.toolbar, "Refresh", self.refresh, width=90)
@@ -652,7 +654,7 @@ class CodeRegistryWidget(tk.Frame):
 
         tk.Label(
             table_header,
-            text="Registry Table",
+            text="REGISTRY TABLE",
             bg=CARD,
             fg=TEXT,
             font=FONT_H2,
@@ -740,7 +742,7 @@ class CodeRegistryWidget(tk.Frame):
 
         tk.Label(
             self.overview_card,
-            text="Registry Overview",
+            text="REGISTRY OVERVIEW",
             bg=CARD,
             fg=TEXT,
             font=FONT_H2,
@@ -766,7 +768,7 @@ class CodeRegistryWidget(tk.Frame):
 
         tk.Label(
             self.details_card,
-            text="Details",
+            text="DETAILS",
             bg=CARD,
             fg=TEXT,
             font=FONT_H2,
@@ -820,7 +822,7 @@ class CodeRegistryWidget(tk.Frame):
 
         tk.Label(
             self.description_card,
-            text="Description",
+            text="DESCRIPTION",
             bg=CARD,
             fg=TEXT,
             font=FONT_H2,
@@ -1161,7 +1163,7 @@ class CodeRegistryWidget(tk.Frame):
 
             is_active = layer == self.active_layer_filter
             text_color = TEXT if not self.active_layer_filter or is_active else DIM
-            row_bg = "#172338" if is_active else CARD
+            row_bg = "#1A1A1A" if is_active else CARD
 
             # clickable legend row background
             row = self.chart.create_rectangle(
@@ -1198,7 +1200,7 @@ class CodeRegistryWidget(tk.Frame):
                 cw - 8,
                 y + 10,
                 text=f"{count} ({pct_text:.1f}%)",
-                fill=MUTED if not is_active else BLUE,
+                fill=MUTED if not is_active else ORANGE,
                 anchor="e",
                 font=FONT_XS,
                 tags=(tag, "layer_filter_item"),
@@ -1216,7 +1218,7 @@ class CodeRegistryWidget(tk.Frame):
                 x0 + donut_size // 2,
                 y1 + 18,
                 text="Clear filter",
-                fill=BLUE,
+                fill=ORANGE,
                 font=FONT_XS,
                 tags=(clear_tag,),
             )

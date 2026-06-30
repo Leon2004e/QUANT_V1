@@ -23,7 +23,7 @@
 # reviewer: Leon Everts
 # created_date: 2026-06-17
 # tags: frontend, widget, ea-inventory, management-workspace, dashboard, excel-table
-# notes: Mac/Windows-safe dark UI. Excel-like sortable table. Full visible filter system with scrollable inspector.
+# notes: Bloomberg/terminal-style dark UI. Excel-like sortable table. Full visible filter system with scrollable inspector.
 # ============================================================
 
 from __future__ import annotations
@@ -55,7 +55,7 @@ CODE_REGISTRY = {
     "downstream_data": "main.py",
     "dependencies": "tkinter, ttk, sqlite3, pathlib, os, subprocess, sys, csv",
     "schedule": "manual",
-    "version": "v2.1.0",
+    "version": "v2.2.0-bloomberg-style",
     "last_reviewed": "2026-06-18",
     "business_criticality": "medium",
     "environment": "desktop",
@@ -64,7 +64,7 @@ CODE_REGISTRY = {
     "reviewer": "Leon Everts",
     "created_date": "2026-06-17",
     "tags": "frontend,widget,ea-inventory,management-workspace,dashboard,excel-table",
-    "notes": "Mac/Windows-safe dark UI. Excel-like sortable table. Full visible filter system with scrollable inspector.",
+    "notes": "Bloomberg/terminal-style dark UI. Excel-like sortable table. Full visible filter system with scrollable inspector.",
 }
 
 
@@ -72,31 +72,32 @@ CODE_REGISTRY = {
 # DESIGN TOKENS
 # ============================================================
 
-BG = "#05080D"
-PANEL = "#0B111B"
-CARD = "#111827"
-CARD_2 = "#0E1623"
-CARD_3 = "#0A1019"
-BORDER = "#263449"
-BORDER_SOFT = "#1B2738"
+BG = "#020403"
+PANEL = "#050505"
+CARD = "#0B0B0B"
+CARD_2 = "#101010"
+CARD_3 = "#151515"
+BORDER = "#333333"
+BORDER_SOFT = "#1A1A1A"
 
-TEXT = "#F4F7FB"
-MUTED = "#9AA7B8"
-DIM = "#64748B"
+TEXT = "#F2F2F2"
+MUTED = "#9B9B9B"
+DIM = "#6F6F6F"
 
-BLUE = "#3B82F6"
-BLUE_DARK = "#0B4EDB"
-GREEN = "#22C55E"
-YELLOW = "#FACC15"
-RED = "#EF4444"
+BLUE = "#F5A623"
+BLUE_DARK = "#B87300"
+GREEN = "#00C853"
+YELLOW = "#FFD600"
+RED = "#FF1744"
 PURPLE = "#8B5CF6"
-CYAN = "#22D3EE"
+CYAN = "#2D7DFF"
+ORANGE = "#F5A623"
 
-FONT_TITLE = ("Helvetica", 22, "bold")
-FONT_H1 = ("Helvetica", 15, "bold")
-FONT_H2 = ("Helvetica", 11, "bold")
-FONT_MAIN = ("Helvetica", 10)
-FONT_SMALL = ("Helvetica", 9)
+FONT_TITLE = ("Helvetica", 20, "bold")
+FONT_H1 = ("Helvetica", 13, "bold")
+FONT_H2 = ("Helvetica", 10, "bold")
+FONT_MAIN = ("Helvetica", 9)
+FONT_SMALL = ("Helvetica", 8)
 FONT_XS = ("Helvetica", 8)
 
 
@@ -163,7 +164,7 @@ class ActionButton(tk.Frame):
         bg: str = CARD_2,
         fg: str = TEXT,
         border: str = BORDER,
-        active_bg: str = "#172338",
+        active_bg: str = "#1A1A1A",
     ):
         super().__init__(
             parent,
@@ -539,7 +540,7 @@ class EAInventoryWidget(tk.Frame):
             background=CARD_2,
             foreground=TEXT,
             fieldbackground=CARD_2,
-            rowheight=31,
+            rowheight=27,
             font=FONT_SMALL,
             borderwidth=0,
             relief="flat",
@@ -556,7 +557,7 @@ class EAInventoryWidget(tk.Frame):
 
         style.map(
             "EA.Treeview",
-            background=[("selected", "#16345E")],
+            background=[("selected", "#5A3A00")],
             foreground=[("selected", TEXT)],
         )
 
@@ -602,7 +603,7 @@ class EAInventoryWidget(tk.Frame):
 
         tk.Label(
             title_row,
-            text="EA Inventory",
+            text="EA INVENTORY",
             bg=BG,
             fg=TEXT,
             font=FONT_TITLE,
@@ -610,7 +611,7 @@ class EAInventoryWidget(tk.Frame):
 
         tk.Label(
             title_row,
-            text="/ Infrastructure Storage",
+            text="/ INFRASTRUCTURE STORAGE",
             bg=BG,
             fg=BLUE,
             font=FONT_XS,
@@ -618,7 +619,7 @@ class EAInventoryWidget(tk.Frame):
 
         tk.Label(
             left,
-            text="Read-only EA file inventory from QUANT_SYSTEM.db",
+            text="READ-ONLY EA FILE INVENTORY FROM QUANT_SYSTEM.db",
             bg=BG,
             fg=MUTED,
             font=FONT_SMALL,
@@ -709,7 +710,7 @@ class EAInventoryWidget(tk.Frame):
 
         tk.Label(
             self.search_box,
-            text="Search",
+            text="SEARCH",
             bg=CARD_2,
             fg=MUTED,
             font=FONT_XS,
@@ -729,17 +730,17 @@ class EAInventoryWidget(tk.Frame):
 
         self.btn_filter = ActionButton(
             self.toolbar,
-            "Apply Filter",
+            "APPLY",
             self.refresh,
             width=112,
             bg=BLUE_DARK,
             fg=TEXT,
             border=BLUE,
         )
-        self.btn_clear = ActionButton(self.toolbar, "Clear Filters", self.clear_all_filters, width=112)
-        self.btn_refresh = ActionButton(self.toolbar, "Refresh", self.refresh, width=90)
-        self.btn_open = ActionButton(self.toolbar, "Open File", self.open_selected_file, width=96)
-        self.btn_export = ActionButton(self.toolbar, "Export CSV", self.export_csv, width=100)
+        self.btn_clear = ActionButton(self.toolbar, "CLEAR", self.clear_all_filters, width=112)
+        self.btn_refresh = ActionButton(self.toolbar, "REFRESH", self.refresh, width=90)
+        self.btn_open = ActionButton(self.toolbar, "OPEN", self.open_selected_file, width=96)
+        self.btn_export = ActionButton(self.toolbar, "EXPORT", self.export_csv, width=100)
 
     def _build_paned_area(self) -> None:
         self.body = tk.Frame(self, bg=BG)

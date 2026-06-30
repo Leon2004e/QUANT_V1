@@ -1,97 +1,109 @@
 # QUANT OS OVERVIEW
 
-Version: 1.0
+Version: 2.0
 
 ---
 
 # PURPOSE
 
-Dieses Dokument definiert:
+Dieses Dokument definiert ausschließlich die Gesamtarchitektur von QUANT OS.
 
-- die Gesamtarchitektur von QUANT OS
-- die Layer des Systems
-- die Beziehungen zwischen den Layern
-- die Dokumentationshierarchie
-- die Build-Reihenfolge
-- die Navigation innerhalb des Systems
+Es dient als:
 
-Dieses Dokument dient ausschließlich als:
+- Orientierung
+- Systemlandkarte
+- Navigation
+- Einstiegspunkt
 
-text Orientierung Gesamtkontext Systemlandkarte Navigation 
+Es ist **keine** Detail-Spezifikation.
 
-Nicht als Detail-Spezifikation.
+Alle technischen Details befinden sich ausschließlich in den Layer Guides und Standards.
 
 ---
 
 # DOCUMENTATION HIERARCHY
 
-QUANT OS besitzt folgende Dokumentationshierarchie:
-
-text Overview ↓ Layer Guides ↓ Standards ↓ Registries ↓ Implementierung 
+Overview
+↓
+Layer Guides
+↓
+Standards
+↓
+Registries
+↓
+Implementierung
 
 Bedeutung:
 
-text Overview = Systemlandkarte  Layer Guides = Layer Architektur  Standards = Technische Regeln  Registries = Verwaltung von Systemobjekten  Implementierung = Code, Datenbanken, Dashboards, Pipelines 
+- Overview = Orientierung
+- Layer Guides = Layer-Architektur
+- Standards = technische Regeln
+- Registries = Verwaltung der Systemobjekte
+- Implementierung = Code, Datenbanken, Dashboards, Pipelines
 
 ---
 
 # PRIORITY RULE
 
-Bei Konflikten gilt:
+Bei Konflikten gilt immer:
 
-text Standards > Layer Guides > Overview 
+Standards
+>
+Layer Guides
+>
+Overview
 
 ---
 
 # WORKING RULE
 
-Das Overview dient nur zur Navigation.
+Das Overview dient ausschließlich dazu,
 
-Sobald ein Layer identifiziert wurde:
+- den richtigen Layer zu bestimmen,
+- den passenden Layer Guide auszuwählen,
+- die relevanten Standards zu bestimmen.
 
-text Overview + passender Layer Guide 
-
-verwenden.
-
-Danach:
-
-text passende Standards 
-
-verwenden.
+Es dürfen keine Spezifikationen ausschließlich aus dem Overview abgeleitet werden.
 
 ---
 
-# STANDARD RESPONSE RULE
+# MANDATORY STARTUP RULE
 
-Nach dem Laden des Overviews:
+Diese Regel ist verpflichtend und gilt für **jede neue fachliche Anfrage**.
 
-1. Bestimme den betroffenen Layer.
+Vor jeder Analyse, Erklärung, Planung oder Implementierung muss ausschließlich folgender Ablauf durchgeführt werden:
 
-2. Falls der Layer nicht eindeutig ist:
+1. Betroffenen Layer bestimmen.
+2. Falls nicht eindeutig: "In welchem Layer möchten wir arbeiten?"
+3. Prüfen, ob der passende Layer Guide vorliegt.
+4. Prüfen, ob die relevanten Standards vorliegen.
+5. Nach der konkreten Aufgabe fragen.
+6. Nach vorhandenen Komponenten oder bestehenden Implementierungen fragen.
+7. Nach Einschränkungen oder Vorgaben fragen.
 
-text In welchem Layer möchten wir arbeiten? 
+Erst wenn Punkt 1–7 vollständig geklärt sind, darf mit der eigentlichen Arbeit begonnen werden.
 
-fragen.
+Vorher ist nicht erlaubt:
 
-3. Danach ausschließlich mit:
-
-text Overview + Layer Guide + relevanten Standards 
-
-arbeiten.
-
-4. Keine Komponenten erfinden.
-
-5. Keine Layer vermischen.
-
-6. Keine Spezifikationen aus anderen Layern ableiten.
+- Zusammenfassungen
+- Analysen
+- Architekturvorschläge
+- Implementierungen
+- Annahmen
+- Ergänzungen
+- Vermischen von Layern
+- Erfinden neuer Komponenten
 
 ---
 
 # SYSTEM LAYERS
 
-QUANT OS besteht aus:
-
-text Infrastructure Layer Management Layer Control Plane Layer Backend Layer Feedback Loop Layer Frontend Layer 
+1. Infrastructure Layer
+2. Management Layer
+3. Control Plane Layer
+4. Backend Layer
+5. Feedback Loop Layer
+6. Frontend Layer
 
 ---
 
@@ -99,144 +111,124 @@ text Infrastructure Layer Management Layer Control Plane Layer Backend Layer Fee
 
 ## Infrastructure Layer
 
-Verantwortlich für:
-
-text Storage Databases APIs Scheduler Logging Monitoring Backup VPS Infrastructure Automation 
-
----
+Storage
+Databases
+APIs
+Scheduler
+Logging
+Monitoring
+Backup
+VPS
+Automation
 
 ## Management Layer
 
-Verantwortlich für:
-
-text Registries Catalogs Configurations Documentation Versioning Audit 
-
----
+Registries
+Catalogs
+Configurations
+Documentation
+Versioning
+Audit
 
 ## Control Plane Layer
 
-Verantwortlich für:
-
-text Systemsteuerung Strategien Portfolios Accounts Deployments Governance Events 
+Systemsteuerung
+Strategien
+Portfolios
+Accounts
+Deployments
+Governance
+Events
 
 Kern:
-
-text QUANT_SYSTEM.db 
-
----
+QUANT_SYSTEM.db
 
 ## Backend Layer
 
-Verantwortlich für:
-
-text Verarbeitung Berechnungen Analytics Scoring Ranking Lifecycle Portfolio Construction Risk Processing 
-
----
+Verarbeitung
+Berechnungen
+Analytics
+Scoring
+Ranking
+Lifecycle
+Portfolio Construction
+Risk Processing
 
 ## Feedback Loop Layer
 
-Verantwortlich für:
-
-text Monitoring Performance Feedback Edge Tracking Lifecycle Feedback Portfolio Feedback Governance Feedback Systemverbesserung 
-
----
+Monitoring
+Performance Feedback
+Edge Tracking
+Lifecycle Feedback
+Portfolio Feedback
+Governance Feedback
+Systemverbesserung
 
 ## Frontend Layer
 
-Verantwortlich für:
-
-text UI UX Workspaces Dashboards Visualisierung Benutzerinteraktion 
+UI
+UX
+Workspaces
+Dashboards
+Visualisierung
+Benutzerinteraktion
 
 ---
 
 # NAVIGATION GUIDE
 
-Wenn die Aufgabe betrifft:
+UI, Dashboards, Workspaces → Frontend_Guide.md
 
-text UI Dashboard Workspace Widget Panel Visualisierung 
+Center, Engines, Analytics, Verarbeitung → Backend_Guide.md
 
-verwende:
+Registries, Catalogs, Dokumentation → Management_Guide.md
 
-text Frontend_Guide.md 
+Strategien, Portfolios, Accounts, QUANT_SYSTEM.db → Control_Plane_Guide.md
 
----
+Storage, Datenbanken, APIs, Logging, Monitoring, Backup, Scheduler, VPS, Automation → Infrastructure_Guide.md
 
-Wenn die Aufgabe betrifft:
-
-text Center Engine Rules Events Output Analytics Verarbeitung 
-
-verwende:
-
-text Backend_Guide.md 
-
----
-
-Wenn die Aufgabe betrifft:
-
-text Registry Catalog Configuration Documentation Versioning Audit 
-
-verwende:
-
-text Management_Guide.md 
-
----
-
-Wenn die Aufgabe betrifft:
-
-text Strategien Portfolios Accounts Deployments Governance QUANT_SYSTEM.db 
-
-verwende:
-
-text Control_Plane_Guide.md 
-
----
-
-Wenn die Aufgabe betrifft:
-
-text Storage Database API Logging Monitoring Backup Scheduler VPS Automation 
-
-verwende:
-
-text Infrastructure_Guide.md 
-
----
-
-Wenn die Aufgabe betrifft:
-
-text Lifecycle Portfolio Rotation Edge Tracking Risk Feedback Governance Feedback Rebalancing 
-
-verwende:
-
-text Feedback_Loop_Guide.md 
+Lifecycle, Rotation, Edge Tracking, Rebalancing → Feedback_Loop_Guide.md
 
 ---
 
 # BUILD ORDER
 
-QUANT OS wird von unten nach oben aufgebaut.
+QUANT OS wird in folgender Reihenfolge aufgebaut:
 
-Reihenfolge:
+1. Infrastructure Layer
+2. Management Layer
+3. Control Plane Layer
+4. Backend Layer
+5. Feedback Loop Layer
+6. Frontend Layer
 
-text 1. Infrastructure Layer  2. Management Layer  3. Control Plane Layer  4. Backend Layer  5. Feedback Loop Layer  6. Frontend Layer 
-
-Grundsatz:
-
-text Ein Layer wird erst produktiv entwickelt, wenn die darunterliegenden Layer existieren. 
+Ein Layer darf erst entwickelt werden, wenn alle darunterliegenden Layer definiert sind.
 
 ---
 
 # SYSTEM PHILOSOPHY
 
-text Infrastructure liefert die Grundlage.  Management verwaltet die Systemobjekte.  Control Plane koordiniert das System.  Backend erzeugt Ergebnisse.  Feedback Loops erzeugen Selbststeuerung.  Frontend visualisiert und steuert. 
+Infrastructure bildet die Grundlage.
+
+Management verwaltet die Systemobjekte.
+
+Control Plane koordiniert das Gesamtsystem.
+
+Backend verarbeitet Daten und erzeugt Ergebnisse.
+
+Feedback Loops optimieren das System kontinuierlich.
+
+Frontend visualisiert und steuert das System.
 
 ---
 
 # PRINCIPLE
 
-QUANT OS wird niemals direkt über das Overview entwickelt.
+Das Overview dient ausschließlich zur Navigation.
 
-Das Overview dient ausschließlich dazu:
+Die eigentliche Spezifikation befindet sich immer in:
 
-text den richtigen Layer zu finden den richtigen Guide zu laden die richtigen Standards zu verwenden 
+- Layer Guides
+- Standards
 
-Die eigentliche Spezifikation befindet sich in den Layer Guides und Standards.
+Entscheidungen dürfen niemals ausschließlich auf Basis des Overviews getroffen werden.
